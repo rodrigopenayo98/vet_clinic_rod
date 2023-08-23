@@ -14,60 +14,86 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
+-------------------------------------------------------
+
+-- Start a new transaction
+BEGIN;
+
+-- Update all animals' species to 'unspecified' within the transaction
+UPDATE animals SET species = 'unspecified';
+
+-- View the current state of the animals table
+SELECT * FROM animals;
+
+-- Roll back the transaction to undo the updates
+ROLLBACK;
+
+-- View the animals table after rolling back (no changes should be visible)
+SELECT * FROM animals;
+
+-- Start a new transaction
+BEGIN;
 
 -------------------------------------------------------
 
+-- Update animals with names ending in 'mon' to have species 'digimon'
 UPDATE animals
 SET species = 'digimon'
 WHERE name LIKE '%mon';
 
 -------------------------------------------------------
 
+-- Update animals with no specified species to have species 'pokemon'
 UPDATE animals
 SET species = 'pokemon'
 WHERE species IS NULL;
 
 -------------------------------------------------------
 
--- Transacción 1
+
+-- Transaction 1: Deleting Records Born After January 1, 2022
 BEGIN;
 DELETE FROM animals
 WHERE date_of_birth > '2022-01-01';
+-- Create a savepoint after the deletion
 SAVEPOINT after_delete;
 
--- Transacción 2
+-- Transaction 2: Updating Weights and Rolling Back to Savepoint
 UPDATE animals
 SET weight_kg = weight_kg * -1;
+-- Roll back to the savepoint to undo the weight updates
 ROLLBACK TO after_delete;
 
--- Transacción 3
+-- Transaction 3: Final Weight Adjustments and Committing Changes
 UPDATE animals
 SET weight_kg = weight_kg * -1
 WHERE weight_kg < 0;
+-- Commit the final changes
 COMMIT;
+
 
 --------------------------------------------------------
 
--- Query 1
+-- How many animals are there?
 SELECT COUNT(*) FROM animals;
 
--- Query 2
+-- How many animals have never attempted to escape?
 SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
 
--- Query 3
+-- What is the average weight of the animals?
 SELECT AVG(weight_kg) FROM animals;
 
--- Query 4
+-- Who escapes more, neutered or non-neutered animals?
 SELECT neutered, AVG(escape_attempts) AS avg_escape_attempts
 FROM animals
 GROUP BY neutered;
 
--- Query 5
+-- What is the minimum and maximum weight of each animal species?
 SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight
 FROM animals
 GROUP BY species;
 
--- Query 6
+-- What is the average escape attempts per animal species born between 1990 and 2000?
 SELECT species, AVG(escape_attempts) AS avg_escape_attempts
 FROM animals
 WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
