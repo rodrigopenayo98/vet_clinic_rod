@@ -125,6 +125,11 @@ To run tests, run the following command:
 - Twitter: [@rodrigopenayo98](https://twitter.com/rodrigopenayo98)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/rodrigo-penayo-391226158/)
 
+👤 **Tajul Afreen**
+
+- GitHub: [@tajulafreen](https://github.com/tajulafreen)
+- Twitter: [@tajulafreen](https://twitter.com/tajulafreen)
+- LinkedIn: [@tajul-afreen](https://www.linkedin.com/in/tajul-afreen/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p
 
