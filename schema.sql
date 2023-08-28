@@ -47,5 +47,20 @@ ADD COLUMN species_id INTEGER REFERENCES species(id);
 ALTER TABLE animals
 ADD COLUMN owner_id INTEGER REFERENCES owners(id);
 
+-------------------------------------- perfomance
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+------------------------------------- to improve perfomance time
+
+-- create new ids
+
+CREATE INDEX idx_visits_animal_id ON visits (animal_id);
+
+CREATE INDEX idx_visits_vet_id ON visits (vet_id);
+
+CREATE INDEX idx_owners_email ON owners (email);
+
+
 
 
