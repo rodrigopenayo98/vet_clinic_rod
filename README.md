@@ -131,6 +131,12 @@ To run tests, run the following command:
 - Twitter: [@tajulafreen](https://twitter.com/tajulafreen)
 - LinkedIn: [@tajul-afreen](https://www.linkedin.com/in/tajul-afreen/)
 
+👤 **Aniekan Winner**
+
+- GitHub: [@githubhandle](https://github.com/DevaWinner)
+- Twitter: [@twitterhandle](https://twitter.com/WinnerDevq)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/winnera/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p
 
 <!-- FUTURE FEATURES -->
