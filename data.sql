@@ -57,3 +57,11 @@ SET owner_id = (
         WHEN name IN ('Angemon', 'Boarmon') THEN (SELECT id FROM owners WHERE full_name = 'Dean Winchester')
     END
 );
+
+INSERT INTO visits (animal_id, vet_id, date_of_visit)
+SELECT * FROM (SELECT id FROM animals) animal_ids,
+               (SELECT id FROM vets) vets_ids,
+               generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
+
+INSERT INTO owners (full_name, email)
+SELECT 'Owner' || generate_series(1, 2500000), 'owner_' || generate_series(1, 2500000) || '@mail.com';
